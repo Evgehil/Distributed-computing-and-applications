@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: computer-service-route
+          uri: http://computer-store:8081
+          predicates:
+            - Path=/api/computers/**
+
+        - id: report-service-route
+          uri: http://report-service:8082
+          predicates:
+            - Path=/api/reports/**
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

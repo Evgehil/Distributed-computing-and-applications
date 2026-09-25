@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Evgeniu
+      changes:
+        - sql:
+            sql: >
+              ALTER TABLE computer
+              ADD CONSTRAINT chk_serial_number_format
+              CHECK (serial_number ~ '^0[0-9]+$');
+      rollback:
+        - sql:
+            sql: >
+              ALTER TABLE computer
+              DROP CONSTRAINT chk_serial_number_format;
